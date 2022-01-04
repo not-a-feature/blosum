@@ -7,16 +7,16 @@ Or:  https://pypi.org/project/blosum/
 License: GPL-3.0
 """
 
-from importlib.resources import read_text
 from warnings import warn
 from ._data import default_blosum
 
+
 class BLOSUM():
-    def __init__(self, n, default : float =float("-inf")):
+    def __init__(self, n, default: float = float("-inf")):
         """
         Object to easily access a blosum matrix.
         This reader supports asymetric data.
-        
+
         Input:
         Either n ϵ {45,50,62,80,90} or path
 
@@ -43,7 +43,6 @@ class BLOSUM():
         else:
             raise(BaseException("Can't initate empty BLOSUM Object"))
 
-    
     def __loadMatrix(self, path: str) -> None:
         """
         Reads a Blosum matrix from file.
@@ -99,7 +98,7 @@ class BLOSUM():
         Ouput:
             score: Float, value or default value.isinstance(self.n, )
         """
- 
+
         try:
             score = self.matrix[key]
         except KeyError:

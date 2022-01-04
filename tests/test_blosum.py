@@ -45,6 +45,7 @@ def test_blosum_empty():
     bm = bl.BLOSUM(None)
     bm["AB"]
 
+
 def test_magic_repr():
     assert repr(bl.BLOSUM(62)) == "BLOSUM(62, default=float('-inf'))"
     assert repr(bl.BLOSUM(62, default=0)) == "BLOSUM(62, default=0)"
