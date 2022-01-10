@@ -10,7 +10,6 @@ License: GPL-3.0
 from warnings import warn
 from ._data import default_blosum
 
-
 class BLOSUM():
     def __init__(self, n, default: float = float("-inf")):
         """
@@ -89,9 +88,15 @@ class BLOSUM():
 
         self.matrix = blosumDict
 
+    def keys(self):
+        """
+        Returns the keys of the blosum matrix
+        """
+        return self.matrix.keys()
+
     def __getitem__(self, key: str) -> float:
         """
-        Magic function to get the BLOSUM score.
+        Magic method to get the BLOSUM score.
 
         Input:
             key: String, Combination of both amino-acids.
@@ -106,15 +111,15 @@ class BLOSUM():
 
         return score
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
-        Magic method to allow blosum object printing.
+        Magic method to allow BLOSUM object printing.
         """
         return f'BLOSUM {self.n}\n{self.matrix}'
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
-        Magic method to allow printing of the blosum representation.
+        Magic method to allow printing of the BLOSUM representation.
         """
 
         d = "float('-inf')" if self.default == float("-inf") else self.default

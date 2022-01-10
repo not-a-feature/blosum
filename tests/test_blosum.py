@@ -52,3 +52,8 @@ def test_magic_repr():
 
     fp = path.join(path.dirname(__file__), "test.blosum")
     assert repr(bl.BLOSUM(fp, default=0)) == f'BLOSUM("{fp}", default=0)'
+
+
+def test_toDict():
+    bm = bl.BLOSUM(62)
+    assert dict(bm) == bm.matrix

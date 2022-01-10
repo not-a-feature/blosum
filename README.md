@@ -64,6 +64,12 @@ To get a value use:
 val = matrix["AY"]
 ```
 
+Or get the dictionary representation of the BLOSUM matrix.
+
+```python
+blosum_dict = dict(matrix)
+```
+
 If the key cannot be found, the default value is returned. It is `float("-inf")`.
 It is possible to set a custom default score:
 ```python
