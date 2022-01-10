@@ -10,6 +10,7 @@ License: GPL-3.0
 from warnings import warn
 from ._data import default_blosum
 
+
 class BLOSUM():
     def __init__(self, n, default: float = float("-inf")):
         """
