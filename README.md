@@ -29,7 +29,7 @@ pip install .
 ## How to use
 
 ### Default BLOSUM 
-This package comes with the most commonly used BLOSUM matrices built in.
+This package provides with the commonly used BLOSUM matrices.
 You can choose from BLOSUM 45, 50, 62, 80 and 90.
 
 To load a matrix:
@@ -49,7 +49,8 @@ matrix = bl.BLOSUM("path/to/blosum.file")
 The matrices are required to have following format:
 
 ```
-# One Header Line
+# Comments should start with #
+# Each value should be seperated by one or many whitespace
    A  R  N  D
 A  5 -2 -1 -2
 R -2  7  0 -1

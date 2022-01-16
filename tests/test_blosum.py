@@ -33,9 +33,25 @@ def test_blosum_custom_file():
     assert s == 17
 
 
+@pytest.mark.filterwarnings("ignore:Blosum")
+def test_blosum_custom_file_with_comments():
+    fp = path.join(path.dirname(__file__), "comments.blosum")
+    bm = bl.BLOSUM(fp)
+    labels = ["A", "R", "N", "D"]
+    s = sum([bm[f"{a}{b}"] for b in labels for a in labels])
+    assert s == 17
+
+
 @pytest.mark.xfail
 def test_blosum_invalid_file():
     fp = path.join(path.dirname(__file__), "fail.blosum")
+    bm = bl.BLOSUM(fp)
+    bm["AB"]
+
+
+@pytest.mark.xfail
+def test_blosum_invalid_file2():
+    fp = path.join(path.dirname(__file__), "fail2.blosum")
     bm = bl.BLOSUM(fp)
     bm["AB"]
 
