@@ -27,7 +27,6 @@ class BLOSUM():
         path: String, path to a Blosum matrix.
             File in a format like:
             https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/BLOSUM62
-
         """
 
         self.n = n
@@ -59,34 +58,39 @@ class BLOSUM():
         with open(path, "r") as f:
             content = f.readlines()
 
-        # Skip header line
-        content = content[1:]
-
-        # Extract labels
-        labels = content[0]
-        labelslist = labels.split()
-
-        # Check if quadratic
-        if not len(labelslist) == len(content)-1:
-            raise EOFError("Blosum file is not quadratic.")
-
-        # Check if all AA are covered
-        if not len(labelslist) == 25:
-            warn(UserWarning("Blosum matrix may not cover all amino-acids"))
-
-        # Skip label line
-        content = content[1:]
-
         blosumDict = {}
-        # For each line
+
+        header = True
         for line in content:
+            line = line.strip()
+
+            # Skip comments starting with #
+            if line.startswith("#"):
+                continue
+
             linelist = line.split()
-            if len(linelist) < 0:
-                break
+
+            # Extract labels only once
+            if header:
+                labelslist = linelist
+                header = False
+
+                # Check if all AA are covered
+                if not len(labelslist) == 25:
+                    warn(UserWarning("Blosum matrix may not cover all amino-acids"))
+                continue
+
+            if not len(linelist) == len(labelslist) + 1:
+                # Check if line has as may entries as labels
+                raise EOFError("Blosum file is missing values.")
+
             # Add Line/Label combination to dict
             for index, lab in enumerate(labelslist, start=1):
                 blosumDict[f"{linelist[0]}{lab}"] = float(linelist[index])
 
+        # Check quadratic
+        if not len(blosumDict) == len(labelslist)**2:
+            raise EOFError("Blosum file is not quadratic.")
         self.matrix = blosumDict
 
     def keys(self):

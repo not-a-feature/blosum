@@ -1,0 +1,6 @@
+# Test BLOSUM matrix
+   A  R  N  D  C
+A  5 -2 -1 -2 -1
+R -2  7  0 -1 -3
+N -1  0  6  2 -2
+D -2 -1  2  7 -3
