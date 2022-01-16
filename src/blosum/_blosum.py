@@ -27,7 +27,6 @@ class BLOSUM():
         path: String, path to a Blosum matrix.
             File in a format like:
             https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/BLOSUM62
-
         """
 
         self.n = n
@@ -64,11 +63,11 @@ class BLOSUM():
         header = True
         for line in content:
             line = line.strip()
-            
+
             # Skip comments starting with #
             if line.startswith("#"):
                 continue
-            
+
             linelist = line.split()
 
             # Extract labels only once
@@ -80,7 +79,7 @@ class BLOSUM():
                 if not len(labelslist) == 25:
                     warn(UserWarning("Blosum matrix may not cover all amino-acids"))
                 continue
-            
+
             if not len(linelist) == len(labelslist) + 1:
                 # Check if line has as may entries as labels
                 raise EOFError("Blosum file is missing values.")
@@ -88,7 +87,7 @@ class BLOSUM():
             # Add Line/Label combination to dict
             for index, lab in enumerate(labelslist, start=1):
                 blosumDict[f"{linelist[0]}{lab}"] = float(linelist[index])
-        
+
         # Check quadratic
         if not len(blosumDict) == len(labelslist)**2:
             raise EOFError("Blosum file is not quadratic.")
