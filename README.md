@@ -29,7 +29,7 @@ pip install .
 ## How to use
 
 ### Default BLOSUM 
-This package provides with the commonly used BLOSUM matrices.
+This package provides the most commonly used BLOSUM matrices.
 You can choose from BLOSUM 45, 50, 62, 80 and 90.
 
 To load a matrix:
