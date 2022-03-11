@@ -7,12 +7,15 @@ from os import path
 f = float("-inf")
 
 
-@pytest.mark.parametrize("blosum_number,expected", [
-    (45, [0, 1, -2, -5, 3, 1, -3, -5, -2, -2, 1, -5, f, f, f, f]),
-    (50, [0, 1, -1, -5, 3, 2, -4, -5, -3, -1, 1, -5, f, f, f, f]),
-    (62, [0, 0, -1, -4, 2, 1, -3, -4, -3, -2, 1, -4, f, f, f, f]),
-    (90, [0, 1, -2, -6, 2, 1, -4, -6, -4, -3, 0, -6, f, f, f, f])
-])
+@pytest.mark.parametrize(
+    "blosum_number,expected",
+    [
+        (45, [0, 1, -2, -5, 3, 1, -3, -5, -2, -2, 1, -5, f, f, f, f]),
+        (50, [0, 1, -1, -5, 3, 2, -4, -5, -3, -1, 1, -5, f, f, f, f]),
+        (62, [0, 0, -1, -4, 2, 1, -3, -4, -3, -2, 1, -4, f, f, f, f]),
+        (90, [0, 1, -2, -6, 2, 1, -4, -6, -4, -3, 0, -6, f, f, f, f]),
+    ],
+)
 def test_blosum(blosum_number, expected):
     bm = bl.BLOSUM(blosum_number)
     get_test = []
