@@ -11,7 +11,7 @@ from warnings import warn
 from ._data import default_blosum
 
 
-class BLOSUM():
+class BLOSUM:
     def __init__(self, n, default: float = float("-inf")):
         """
         Object to easily access a blosum matrix.
@@ -40,7 +40,7 @@ class BLOSUM():
             # load custom matrix
             self.__loadMatrix(n)
         else:
-            raise(BaseException("Can't initate empty BLOSUM Object"))
+            raise (BaseException("Can't initate empty BLOSUM Object"))
 
     def __loadMatrix(self, path: str) -> None:
         """
@@ -89,7 +89,7 @@ class BLOSUM():
                 blosumDict[f"{linelist[0]}{lab}"] = float(linelist[index])
 
         # Check quadratic
-        if not len(blosumDict) == len(labelslist)**2:
+        if not len(blosumDict) == len(labelslist) ** 2:
             raise EOFError("Blosum file is not quadratic.")
         self.matrix = blosumDict
 
@@ -120,7 +120,7 @@ class BLOSUM():
         """
         Magic method to allow BLOSUM object printing.
         """
-        return f'BLOSUM {self.n}\n{self.matrix}'
+        return f"BLOSUM {self.n}\n{self.matrix}"
 
     def __repr__(self) -> str:
         """
@@ -132,4 +132,4 @@ class BLOSUM():
             n = self.n
         else:
             n = f'"{self.n}"'
-        return f'BLOSUM({n}, default={d})'
+        return f"BLOSUM({n}, default={d})"

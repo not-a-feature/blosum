@@ -5,6 +5,7 @@ A small module for easy access to BLOSUM matrices without dependencies.
 ![Test Badge](https://github.com/not-a-feature/blosum/actions/workflows/tests.yml/badge.svg)
 ![Python Version Badge](https://img.shields.io/pypi/pyversions/blosum)
 ![Download Badge](https://img.shields.io/pypi/dm/blosum.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 The BLOcks SUbstitution Matrices (BLOSUM) are used to score alignments between protein sequences and are therefore mainly used in bioinformatics.
 
@@ -79,7 +80,7 @@ matrix = bl.BLOSUM(62, default=0)
 
 ## License
 ```
-Copyright (C) 2021 by Jules Kreuer - @not_a_feature
+Copyright (C) 2022 by Jules Kreuer - @not_a_feature
 This piece of software is published unter the GNU General Public License v3.0
 TLDR:
 
