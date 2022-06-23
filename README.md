@@ -5,6 +5,7 @@ A small module for easy access to BLOSUM matrices without dependencies.
 ![Test Badge](https://github.com/not-a-feature/blosum/actions/workflows/tests.yml/badge.svg)
 ![Python Version Badge](https://img.shields.io/pypi/pyversions/blosum)
 ![Download Badge](https://img.shields.io/pypi/dm/blosum.svg)
+[![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/blosum/README.html)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 The BLOcks SUbstitution Matrices (BLOSUM) are used to score alignments between protein sequences and are therefore mainly used in bioinformatics.
@@ -27,6 +28,10 @@ cd blosum
 pip install .
 ```
 
+Or by conda:
+```bash
+conda install blosum
+```
 ## How to use
 
 ### Default BLOSUM 
