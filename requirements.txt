@@ -1,5 +1,3 @@
 os
 typing
-zipfile
-gzip
-tarfile
+collections
