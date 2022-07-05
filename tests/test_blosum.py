@@ -27,6 +27,12 @@ def test_blosum(blosum_number, expected):
     assert get_test == expected
 
 
+def test_blosum_default():
+    bm = bl.BLOSUM(62, default=-99)
+    assert bm["nonexistent"] == -99  # test default value
+    assert bm["HF"] == -1  # test real value
+
+
 @pytest.mark.filterwarnings("ignore:Blosum")
 def test_blosum_custom_file():
     fp = path.join(path.dirname(__file__), "test.blosum")
@@ -67,12 +73,8 @@ def test_blosum_empty():
 
 def test_magic_repr():
     assert repr(bl.BLOSUM(62)) == "BLOSUM(62, default=float('-inf'))"
+    assert repr(bl.BLOSUM(62, default=float("inf"))) == "BLOSUM(62, default=float('inf'))"
     assert repr(bl.BLOSUM(62, default=0)) == "BLOSUM(62, default=0)"
 
     fp = path.join(path.dirname(__file__), "test.blosum")
     assert repr(bl.BLOSUM(fp, default=0)) == f'BLOSUM("{fp}", default=0)'
-
-
-def test_toDict():
-    bm = bl.BLOSUM(62)
-    assert dict(bm) == bm.matrix
