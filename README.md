@@ -44,7 +44,7 @@ import blosum as bl
 matrix = bl.BLOSUM(62)
 ``` 
 
-### Custom Matrix
+### Custom matrix
 In addition, own matrices can be loaded. For this, the path is given as an argument.
 
 ```python
@@ -64,17 +64,12 @@ N -1  0  6  2
 D -2 -1  2  7
 ```
 
-### Getting Values.
+### Getting values:
+Once loaded the `matrix` behaves like a `defaultdict`.
 To get a value use:
 
 ```python
 val = matrix["AY"]
-```
-
-Or get the dictionary representation of the BLOSUM matrix.
-
-```python
-blosum_dict = dict(matrix)
 ```
 
 If the key cannot be found, the default value is returned. It is `float("-inf")`.

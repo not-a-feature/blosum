@@ -1,5 +1,3 @@
-from ._blosum import BLOSUM
+from ._blosum import BLOSUM, loadMatrix
 
-__all__ = [
-    "BLOSUM",
-]
+__all__ = ["BLOSUM", "loadMatrix"]
