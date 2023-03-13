@@ -1,6 +1,6 @@
 # Test BLOSUM matrix
    A  R  N  D
-A  5 -2 -1 -2
+A  5 0 -1 -2
 R -2  7  0 -1
 N -1  0  6  2
 D -2 -1  2  7

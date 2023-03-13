@@ -18,19 +18,21 @@ f = float("-inf")
 )
 def test_blosum(blosum_number, expected):
     bm = bl.BLOSUM(blosum_number)
+
     get_test = []
 
     for a in ["H", "K", "W", "U"]:
         for b in ["R", "Q", "F", "*"]:
-            get_test.append(bm[f"{a}{b}"])
+            get_test.append(bm[a][b])
 
     assert get_test == expected
 
 
 def test_blosum_default():
     bm = bl.BLOSUM(62, default=-99)
-    assert bm["nonexistent"] == -99  # test default value
-    assert bm["HF"] == -1  # test real value
+    assert bm["non"]["existent"] == -99  # test default value
+    assert dict(bm["nonexistent"]) == dict()  # test default value
+    assert bm["H"]["F"] == -1  # test real value
 
 
 @pytest.mark.filterwarnings("ignore:Blosum")
@@ -38,8 +40,8 @@ def test_blosum_custom_file():
     fp = path.join(path.dirname(__file__), "test.blosum")
     bm = bl.BLOSUM(fp)
     labels = ["A", "R", "N", "D"]
-    s = sum([bm[f"{a}{b}"] for b in labels for a in labels])
-    assert s == 17
+    s = sum([bm[a][b] for b in labels for a in labels])
+    assert s == 19
 
 
 @pytest.mark.filterwarnings("ignore:Blosum")
@@ -47,7 +49,7 @@ def test_blosum_custom_file_with_comments():
     fp = path.join(path.dirname(__file__), "comments.blosum")
     bm = bl.BLOSUM(fp)
     labels = ["A", "R", "N", "D"]
-    s = sum([bm[f"{a}{b}"] for b in labels for a in labels])
+    s = sum([bm[a][b] for b in labels for a in labels])
     assert s == 17
 
 
@@ -55,20 +57,20 @@ def test_blosum_custom_file_with_comments():
 def test_blosum_invalid_file():
     fp = path.join(path.dirname(__file__), "fail.blosum")
     bm = bl.BLOSUM(fp)
-    bm["AB"]
+    bm["A"]["B"]
 
 
 @pytest.mark.xfail
 def test_blosum_invalid_file2():
     fp = path.join(path.dirname(__file__), "fail2.blosum")
     bm = bl.BLOSUM(fp)
-    bm["AB"]
+    bm["A"]["B"]
 
 
 @pytest.mark.xfail
 def test_blosum_empty():
     bm = bl.BLOSUM(None)
-    bm["AB"]
+    bm["A"]["B"]
 
 
 def test_magic_repr():
