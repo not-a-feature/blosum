@@ -7,7 +7,7 @@ Any information relevant to third-party vendors listed below are collected using
 
 ## Dependencies
 
-### [mypy (0.930)](http://www.mypy-lang.org/)
+### [mypy](http://www.mypy-lang.org/)
 
 #### Declared Licenses
 MIT *OR* Python-2.0
@@ -17,7 +17,7 @@ MIT *OR* Python-2.0
 **Package Homepage**: http://www.mypy-lang.org/
 ---
 
-### [pytest (7.0.0rc1)](http://pytest.org)
+### [pytest](http://pytest.org)
 
 #### Declared Licenses
 
@@ -27,7 +27,7 @@ MIT *OR* Python-2.0
 
 ---
 
-### [pytest-cov (3.0.0)](https://github.com/pytest-dev/pytest-cov)
+### [pytest-cov](https://github.com/pytest-dev/pytest-cov)
 
 #### Declared Licenses
 MIT
@@ -38,7 +38,7 @@ MIT
 
 ---
 
-### [tox (4.0.0a9)](https://tox.readthedocs.org/)
+### [tox](https://tox.readthedocs.org/)
 
 #### Declared Licenses
 MIT

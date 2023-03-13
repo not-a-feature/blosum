@@ -14,33 +14,39 @@ from typing import Dict, Union, DefaultDict
 
 
 class BLOSUM(defaultdict):  # type: ignore
-    def __init__(self, n, default: float = float("-inf")):
+    def __init__(self, n: Union[int, str], default: float = float("-inf")):
         """
         Object to easily access a blosum matrix.
         This reader supports asymetric data.
 
-        Input:
-        Either n ϵ {45,50,62,80,90} or path
+        Input
+        -----
+            Either n ϵ {45,50,62,80,90} or path
 
-        n: Int, which BLOSUM Matrix to use.
-            Choice between: 45,50,62,80 and 90
-            Data gathered from https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/
+            n: int, which BLOSUM Matrix to use.
+                Choice between: 45,50,62,80 and 90
+                Data gathered from https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/
 
-        path: String, path to a Blosum matrix.
-            File in a format like:
-            https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/BLOSUM62
+            path: string, path to a Blosum matrix.
+                File in a format like:
+                https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/BLOSUM62
+
+            default: float, default -inf
         """
 
         self.n = n
         self.default = default
 
         # Using default matrix
-        if n in [45, 50, 62, 80, 90]:
-            super().__init__(lambda: default, default_blosum[n])
+        if isinstance(n, int) and n in [45, 50, 62, 80, 90]:
+            matrix = {}
+            for k, v in default_blosum[n].items():
+                matrix[k] = defaultdict(lambda: default, v)
+            super().__init__(lambda: defaultdict(lambda: default), matrix)
 
         # load custom matrix
         elif isinstance(n, str):
-            super().__init__(lambda: default, loadMatrix(n))
+            super().__init__(lambda: defaultdict(lambda: default), loadMatrix(n))
         else:
             raise (
                 BaseException(
@@ -73,23 +79,31 @@ class BLOSUM(defaultdict):  # type: ignore
         return f"BLOSUM({n}, default={d})"
 
 
-def loadMatrix(path: str) -> Union[Dict[str, int], Dict[str, float]]:
+def loadMatrix(
+    path: str,
+    default: float = float("-inf"),
+) -> DefaultDict[str, DefaultDict[str, float]]:
     """
     Reads a Blosum matrix from file.
     File in a format like:
         https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/BLOSUM62
 
-    Input:
+    Input
+    -----
         path: str, path to a file.
+        default: float, default value "-inf"
 
-    Returns:
+    Returns
+    -------
         blosumDict: Dictionary, The blosum dict
     """
 
     with open(path, "r") as f:
         content = f.readlines()
 
-    blosumDict = {}
+    blosumDict: DefaultDict[str, DefaultDict[str, float]] = defaultdict(
+        lambda: defaultdict(lambda: default)
+    )
 
     header = True
     for line in content:
@@ -117,9 +131,10 @@ def loadMatrix(path: str) -> Union[Dict[str, int], Dict[str, float]]:
 
         # Add Line/Label combination to dict
         for index, lab in enumerate(labelslist, start=1):
-            blosumDict[f"{linelist[0]}{lab}"] = float(linelist[index])
+            blosumDict[linelist[0]][lab] = float(linelist[index])
 
     # Check quadratic
-    if not len(blosumDict) == len(labelslist) ** 2:
+    if not len(blosumDict) == len(labelslist):
         raise EOFError("Blosum file is not quadratic.")
+
     return blosumDict
