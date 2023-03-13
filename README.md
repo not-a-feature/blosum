@@ -14,7 +14,7 @@ The BLOcks SUbstitution Matrices (BLOSUM) are used to score alignments between p
 Reading such matrices is not particularly difficult, yet most off the shelf packages are overloaded with strange dependencies.
 And why do we need to implement the same reader again if there is a simple module for that.
 
-`blosum` offers a robust and easy-to-expand implementation without relying on third-party libraries. 
+`blosum` offers a robust and easy-to-expand implementation without relying on third-party libraries.
 
 
 ## Installation
@@ -35,7 +35,7 @@ conda install blosum
 ```
 ## How to use
 
-### Default BLOSUM 
+### Default BLOSUM
 This package provides the most commonly used BLOSUM matrices.
 You can choose from BLOSUM 45, 50, 62, 80 and 90.
 
@@ -43,7 +43,8 @@ To load a matrix:
 ```python
 import blosum as bl
 matrix = bl.BLOSUM(62)
-``` 
+val = matrix["A"]["Y"]
+```
 
 ### Custom matrix
 In addition, own matrices can be loaded. For this, the path is given as an argument.
@@ -51,6 +52,7 @@ In addition, own matrices can be loaded. For this, the path is given as an argum
 ```python
 import blosum as bl
 matrix = bl.BLOSUM("path/to/blosum.file")
+val = matrix["A"]["Y"]
 ```
 
 The matrices are required to have following format:
@@ -70,10 +72,16 @@ Once loaded the `matrix` behaves like a `defaultdict`.
 To get a value use:
 
 ```python
-val = matrix["AY"]
+val = matrix["A"]["Y"]
+```
+To get a defaultdict of the row with a given key use:
+
+```python
+val_dict = matrix["A"]
 ```
 
-If the key cannot be found, the default value is returned. It is `float("-inf")`.
+
+If the key cannot be found, the default value `float("-inf")` is returned.
 It is possible to set a custom default score:
 ```python
 matrix = bl.BLOSUM(62, default=0)
@@ -81,7 +89,7 @@ matrix = bl.BLOSUM(62, default=0)
 
 ## License
 ```
-Copyright (C) 2022 by Jules Kreuer - @not_a_feature
+Copyright (C) 2023 by Jules Kreuer - @not_a_feature
 This piece of software is published unter the GNU General Public License v3.0
 TLDR:
 
