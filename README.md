@@ -3,7 +3,7 @@
 A small module for easy access to BLOSUM matrices without dependencies.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7084916.svg)](https://doi.org/10.5281/zenodo.7084916)
-[![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.5281/zenodo.7084916)](https://juleskreuer.eu/projekte/citation-badge/)
+[![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.5281/zenodo.7748749)](https://juleskreuer.eu/projekte/citation-badge/)
 ![Test Badge](https://github.com/not-a-feature/blosum/actions/workflows/tests.yml/badge.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)<br>
 ![Download Badge](https://img.shields.io/pypi/dm/blosum.svg)
