@@ -1,6 +1,8 @@
-![blosum](https://github.com/not-a-feature/blosum/raw/main/blosum.png)
+<img src="https://github.com/not-a-feature/blosum/raw/main/blosum.png" width=300px alt="blosum logo"></img>
 
 A small module for easy access to BLOSUM matrices without dependencies.
+
+This module is now part of the bfx suite. See https://py-bfx.readthedocs.io for more information.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7084916.svg)](https://doi.org/10.5281/zenodo.7084916)
 [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.5281/zenodo.7748749)](https://juleskreuer.eu/projekte/citation-badge/)
