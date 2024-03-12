@@ -19,19 +19,27 @@ class BLOSUM(defaultdict):  # type: ignore
         Object to easily access a blosum matrix.
         This reader supports asymetric data.
 
-        Input
-        -----
-            Either n ϵ {45,50,62,80,90} or path
+        Parameters
+        ----------
+            n: int or str
+                * If an integer (45, 50, 62, 80, or 90), selects the corresponding
+                standard BLOSUM matrix.
+                * If a string, provides a filepath to a custom BLOSUM matrix file.
+            default: float
+                The default value for missing entries in the matrix.
+                Defaults to -inf.
 
-            n: int, which BLOSUM Matrix to use.
-                Choice between: 45,50,62,80 and 90
-                Data gathered from https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/
+        Attributes
+        ----------
+            n: int or str
+                The BLOSUM matrix identifier (version number or filepath).
+            default: float
+                The default value for missing entries.
 
-            path: string, path to a Blosum matrix.
-                File in a format like:
-                https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/BLOSUM62
-
-            default: float, default -inf
+        Examples
+        --------
+            >>> blosum62 = BLOSUM(62)
+            >>> score = blosum62['W']['Y']  # Get the score for substituting W with Y
         """
 
         self.n = n
@@ -85,17 +93,19 @@ def loadMatrix(
 ) -> DefaultDict[str, DefaultDict[str, float]]:
     """
     Reads a Blosum matrix from file.
-    File in a format like:
-        https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/BLOSUM62
+    File in a format like: https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/data/BLOSUM62
 
-    Input
-    -----
-        path: str, path to a file.
-        default: float, default value "-inf"
+    Parameters
+    ----------
+        path: str
+             Path to the file.
+        default: float
+            Default value "-inf".
 
     Returns
     -------
-        blosumDict: Dictionary, The blosum dict
+        blosumDict: dict
+            The blosum dict.
     """
 
     with open(path, "r") as f:
