@@ -1,4 +1,4 @@
-![blosum](https://github.com/not-a-feature/blosum/raw/main/blosum.png)
+<img src="https://github.com/not-a-feature/blosum/raw/main/blosum.png" width=300px alt="blosum logo"></img>
 
 A small module for easy access to BLOSUM matrices without dependencies.
 
