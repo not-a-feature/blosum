@@ -3,11 +3,8 @@ permissions:
   contents: read
 
 on:
-  workflow_dispatch:  # Manual trigger
-  # Uncomment to run automatically:
-  # push:
-  #   branches: [ main ]
-  # pull_request:
+  - workflow_dispatch
+  - pull_request
 
 jobs:
   test-uv:
