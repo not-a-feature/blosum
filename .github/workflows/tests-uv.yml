@@ -1,4 +1,6 @@
 name: Tests (uv)
+permissions:
+  contents: read
 
 on:
   workflow_dispatch:  # Manual trigger
