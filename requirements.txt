@@ -1,3 +1,1 @@
-os
-typing
-collections
+# No runtime dependencies - blosum is a zero-dependency package
