@@ -87,7 +87,7 @@ matrix = bl.BLOSUM(62, default=0)
 ```
 
 ## License
-Copyright (C) 2023 by Jules Kreuer - @not_a_feature
+Copyright (C) 2025 by Jules Kreuer - @not_a_feature
 
 This piece of software is published unter the GNU General Public License v3.0
 TLDR:
